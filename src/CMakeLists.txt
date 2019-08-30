@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.10)
 
 ### lib: marnav
 
@@ -369,8 +369,7 @@ install(
 
 if(ENABLE_TOOLS)
 	### bin: nmeasum
-	add_executable(nmeasum)
-	target_sources(nmeasum PRIVATE nmeasum.cpp)
+	add_executable(nmeasum nmeasum.cpp)
 	target_link_libraries(nmeasum PRIVATE marnav::marnav)
 
 	target_compile_options(nmeasum
@@ -384,8 +383,7 @@ if(ENABLE_TOOLS)
 
 	### bin: nmeadump
 	if(ENABLE_IO)
-		add_executable(nmeadump)
-		target_sources(nmeadump PRIVATE nmeadump.cpp)
+		add_executable(nmeadump nmeadump.cpp)
 		target_include_directories(nmeadump
 			PRIVATE
 				${CMAKE_CURRENT_SOURCE_DIR}

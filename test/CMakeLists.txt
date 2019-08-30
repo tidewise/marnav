@@ -1,9 +1,6 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.10)
 
-add_executable(testrunner)
-
-target_sources(testrunner
-	PRIVATE
+add_executable(testrunner
 		ais/Test_ais.cpp
 		ais/Test_ais_angle.cpp
 		ais/Test_ais_binary_001_11.cpp
