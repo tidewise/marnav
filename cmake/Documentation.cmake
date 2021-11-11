@@ -1,5 +1,5 @@
 find_package(Doxygen)
-if(DOXYGEN_FOUND)
+if(DOXYGEN_FOUND AND TARGET tags)
 	if(GIT_REPO_FOUND)
 		git_authors(GIT_AUTHORS AUTHOR_LIST)
 	else()
