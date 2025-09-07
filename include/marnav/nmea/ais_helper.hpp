@@ -2,6 +2,7 @@
 #define MARNAV__NMEA__AIS_HELPER__HPP
 
 #include <vector>
+#include <stdexcept>
 #include <marnav/nmea/vdm.hpp>
 #include <marnav/nmea/vdo.hpp>
 
