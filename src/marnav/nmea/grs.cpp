@@ -1,6 +1,7 @@
 #include <marnav/nmea/grs.hpp>
 #include "checks.hpp"
 #include <marnav/nmea/io.hpp>
+#include <stdexcept>
 
 namespace marnav
 {

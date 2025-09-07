@@ -1,6 +1,7 @@
 #include <marnav/ais/message_08.hpp>
 #include <marnav/ais/binary_001_11.hpp>
 #include <marnav/ais/binary_200_10.hpp>
+#include <stdexcept>
 
 namespace marnav
 {

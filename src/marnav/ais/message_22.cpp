@@ -2,6 +2,7 @@
 #include <marnav/ais/angle.hpp>
 #include <algorithm>
 #include <cmath>
+#include <stdexcept>
 
 namespace marnav
 {

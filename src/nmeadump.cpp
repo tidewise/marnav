@@ -151,6 +151,8 @@
 #include <marnav/utils/unique.hpp>
 #include <marnav/utils/mmsi_country.hpp>
 
+#include <stdexcept>
+
 namespace nmeadump
 {
 namespace terminal

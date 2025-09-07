@@ -5,6 +5,7 @@
 #include <marnav/nmea/waypoint.hpp>
 #include <marnav/utils/mmsi.hpp>
 #include <marnav/utils/unused.hpp>
+#include <stdexcept>
 
 namespace marnav
 {

@@ -2,6 +2,7 @@
 #include <marnav/nmea/io.hpp>
 #include <marnav/utils/unique.hpp>
 #include <string>
+#include <stdexcept>
 
 namespace marnav
 {

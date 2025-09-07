@@ -1,6 +1,7 @@
 #include <marnav/nmea/hfb.hpp>
 #include <marnav/nmea/io.hpp>
 #include <marnav/utils/unique.hpp>
+#include <stdexcept>
 
 namespace marnav
 {

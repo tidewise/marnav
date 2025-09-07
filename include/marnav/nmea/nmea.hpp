@@ -6,6 +6,7 @@
 #include <vector>
 #include <marnav/nmea/sentence_id.hpp>
 #include <marnav/nmea/checksum_enum.hpp>
+#include <stdexcept>
 
 namespace marnav
 {

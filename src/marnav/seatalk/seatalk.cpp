@@ -30,6 +30,7 @@
 #include <marnav/seatalk/message_87.hpp>
 #include <marnav/seatalk/message_89.hpp>
 
+#include <stdexcept>
 #include <algorithm>
 
 namespace marnav

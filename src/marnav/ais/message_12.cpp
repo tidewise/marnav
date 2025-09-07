@@ -1,4 +1,5 @@
 #include <marnav/ais/message_12.hpp>
+#include <stdexcept>
 
 namespace marnav
 {

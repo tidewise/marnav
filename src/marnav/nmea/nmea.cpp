@@ -86,6 +86,7 @@
 #include <marnav/nmea/stalk.hpp>
 #include <algorithm>
 #include <string>
+#include <stdexcept>
 
 /// @example parse_nmea.cpp
 /// This is an example on how to parse and handle NMEA sentences from a string.
