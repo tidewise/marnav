@@ -1,5 +1,6 @@
 #include <marnav/ais/message_24.hpp>
 #include <marnav/utils/mmsi.hpp>
+#include <stdexcept>
 
 namespace marnav
 {

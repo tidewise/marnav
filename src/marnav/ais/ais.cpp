@@ -24,6 +24,7 @@
 
 #include <algorithm>
 #include <functional>
+#include <stdexcept>
 
 /// @example parse_ais.cpp
 /// This example shows how to parse AIS messages from NMEA sentences.

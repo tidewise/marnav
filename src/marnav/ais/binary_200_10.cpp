@@ -2,6 +2,7 @@
 #include <marnav/utils/clamp.hpp>
 #include <algorithm>
 #include <cmath>
+#include <stdexcept>
 
 namespace marnav
 {

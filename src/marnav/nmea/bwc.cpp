@@ -2,6 +2,8 @@
 #include "convert.hpp"
 #include <marnav/nmea/io.hpp>
 
+#include <stdexcept>
+
 namespace marnav
 {
 namespace nmea
