@@ -1,6 +1,7 @@
 #ifndef MARNAV__NMEA__CHECKSUM__HPP
 #define MARNAV__NMEA__CHECKSUM__HPP
 
+#include <cstdint>
 #include <string>
 #include <stdexcept>
 #include <algorithm>

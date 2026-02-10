@@ -1,6 +1,8 @@
 #ifndef MARNAV__NMEA__SENTENCE_ID__HPP
 #define MARNAV__NMEA__SENTENCE_ID__HPP
 
+#include <cstdint>
+
 namespace marnav
 {
 namespace nmea
