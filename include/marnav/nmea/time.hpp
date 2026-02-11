@@ -2,6 +2,7 @@
 #define MARNAV__NMEA__TIME__HPP
 
 #include <string>
+#include <cstdint>
 
 namespace marnav
 {

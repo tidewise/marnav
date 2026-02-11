@@ -1,6 +1,7 @@
 #ifndef MARNAV__AIS__BINARY_DATA__HPP
 #define MARNAV__AIS__BINARY_DATA__HPP
 
+#include <cstdint>
 #include <string>
 #include <marnav/utils/bitset.hpp>
 
