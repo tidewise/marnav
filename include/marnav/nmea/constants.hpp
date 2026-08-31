@@ -39,6 +39,9 @@ enum class quality : uint32_t {
 	invalid = 0, ///< NMEA representation: 0
 	gps_fix = 1, ///< NMEA representation: 1
 	dgps_fix = 2, ///< NMEA representation: 2
+	pps_fix = 3, ///< NMEA representation: 3
+	rtk_fix = 4, ///< NMEA representation: 4
+	rtk_float = 5, ///< NMEA representation: 5
 	guess = 6, ///< NMEA representation: 6
 	simulation = 8 ///< NMEA representation: 8
 };
