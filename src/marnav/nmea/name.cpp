@@ -456,11 +456,17 @@ std::string to_name(quality t)
 {
 	switch (t) {
 		case quality::invalid:
-			return "invaild";
+			return "invalid";
 		case quality::gps_fix:
 			return "GPS fix";
 		case quality::dgps_fix:
 			return "DGPS fix";
+		case quality::pps_fix:
+			return "PPS fix";
+		case quality::rtk_fix:
+			return "RTK fix";
+		case quality::rtk_float:
+			return "RTK float";
 		case quality::guess:
 			return "guess";
 		case quality::simulation:

@@ -103,4 +103,24 @@ TEST_F(Test_nmea_gga, set_lon_east)
 
 	EXPECT_STREQ("$GPGGA,,,,12327.0000,E,,,,,,,,,*08", nmea::to_string(gga).c_str());
 }
+
+TEST_F(Test_nmea_gga, set_quality)
+{
+	nmea::gga gga;
+	gga.set_quality(nmea::quality::rtk_fix);
+
+	EXPECT_STREQ("$GPGGA,,,,,,4,,,,,,,,*62", nmea::to_string(gga).c_str());
+}
+
+TEST_F(Test_nmea_gga, get_quality)
+{
+	auto s = nmea::make_sentence("$GPGGA,123519,4807.038,N,01131.000,E,4,08,0.9,545.4,M,46.9,M,,*42");
+	ASSERT_NE(nullptr, s);
+	auto gga = nmea::sentence_cast<nmea::gga>(s);
+	ASSERT_NE(nullptr, gga);
+
+	auto q = gga->get_quality_indicator();
+	ASSERT_TRUE(q.has_value());
+	EXPECT_EQ(nmea::quality::rtk_fix, q.value());
+}
 }
