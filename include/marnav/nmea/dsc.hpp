@@ -2,6 +2,7 @@
 #define MARNAV__NMEA__DSC__HPP
 
 #include <marnav/nmea/sentence.hpp>
+#include <marnav/nmea/time.hpp>
 #include <marnav/utils/optional.hpp>
 #include <marnav/utils/mmsi.hpp>
 #include <marnav/geo/region.hpp>
@@ -29,11 +30,13 @@ namespace nmea
 /// 5.  Telecommand 2
 /// 6.  Position or Channel/Frequency
 /// 7.  Time (HHMM)
-/// 8.  ?
-/// 9.  ?
+/// 8.  MMSI fo ship in distress. For Distress Acknowledgement, Distress Relay
+///     and Distress Relay Acknowledgement calls only, null otherwise
+/// 9.  Nature of Distress. For Distress Acknowledgement, Distress Relay
+///     and Distress Relay Acknowledgement calls only, null otherwise
 /// 10. Acknowledgment
-///     - B
-///     - R
+///     - B Acknowledgement
+///     - R Acknowledge request
 ///     - S = End of Sequence
 /// 11. Extension Indicator
 ///     - E = extension sentence (DSE) will follow, if not the field is null
@@ -47,6 +50,7 @@ class dsc : public sentence
 public:
 	constexpr static sentence_id ID = sentence_id::DSC;
 	constexpr static const char * TAG = "DSC";
+    using quadrant = std::pair<geo::latitude::hemisphere, geo::longitude::hemisphere>;
 
 	/// Format Specifier
 	enum class format_specifier : uint32_t {
@@ -66,30 +70,30 @@ public:
 
 	/// Nature of distress
 	enum class distress_designation : uint32_t {
-		fire = 100, ///< Fire/explosion
-		flooding = 101, ///< Flooding
-		collision = 102, ///< Collision
-		grounding = 103, ///< Grounding
-		listing = 104, ///< Listing, danger of capsizing
-		sinking = 105, ///< Sinking
-		adrift = 106, ///< Disabled and adrift
-		undesignated = 107, ///< Undesignated Distress
-		abandoning = 108, ///< Abandoning ship
-		piracy = 109, ///< Piracy / armed robbery attack
-		mob = 110, ///< Man over board
-		epirb = 112, ///< EPIRB emission
+		fire, ///< Fire/explosion
+		flooding, ///< Flooding
+		collision, ///< Collision
+		grounding, ///< Grounding
+		listing, ///< Listing, danger of capsizing
+		sinking, ///< Sinking
+		adrift, ///< Disabled and adrift
+		undesignated, ///< Undesignated Distress
+		abandoning, ///< Abandoning ship
+		piracy, ///< Piracy / armed robbery attack
+		mob, ///< Man over board
+		epirb = 12, ///< EPIRB emission
 	};
 
 	/// First Telecommand
 	enum class first_telecommand : uint32_t {
-		polling = 103, ///< Polling
-		unable_to_comply = 104, ///< Unable to comply
-		end_of_call = 105, ///< End of call
-		data = 106, ///< Data
-		distress_ack = 110, ///< Distress acknowledgement
-		distress_relay = 112, ///< Distress relay
-		test = 118, ///< Test
-		no_information = 126, ///< No Information
+		polling = 3, ///< Polling
+		unable_to_comply = 4, ///< Unable to comply
+		end_of_call = 5, ///< End of call
+		data = 6, ///< Data
+		distress_ack = 10, ///< Distress acknowledgement
+		distress_relay = 12, ///< Distress relay
+		test = 18, ///< Test
+		no_information = 26, ///< No Information
 	};
 
 	/// Second Telecommand
@@ -98,8 +102,8 @@ public:
 	};
 
 	enum class acknowledgement : char {
-		B, ///< ?
-		R, ///< ?
+		B, ///< Acknowledgement
+		R, ///< Acknowledge request
 		end_of_sequence ///< NMEA representation: 'S'
 	};
 
@@ -122,6 +126,17 @@ private:
 	format_specifier fmt_spec_ = format_specifier::distress;
 	uint64_t address_ = 0; // space for 10 decimal digits
 	category cat_ = category::distress;
+
+	// distress or first telecommand, space for 2 decimail digits
+	std::uint32_t distress_nat_ = static_cast<uint32_t>(
+        distress_designation::undesignated);
+
+	// position (10 decimal digits), present depending on category
+	utils::optional<std::uint64_t> position_;
+
+    // time (4 decimal digits), present depending on category?
+    utils::optional<std::uint32_t> position_time_;
+
 	// @todo Implement other 6 data members
 	acknowledgement ack_ = acknowledgement::end_of_sequence;
 	extension_indicator extension_ = extension_indicator::none;
@@ -131,6 +146,12 @@ public:
 	decltype(cat_) get_cat() const { return cat_; }
 	utils::mmsi get_mmsi() const;
 	geo::region get_geographical_area() const;
+	utils::optional<distress_designation> get_distress_designation() const;
+	utils::optional<first_telecommand> get_first_telecommand() const;
+    utils::optional<geo::position> get_position() const;
+    utils::optional<nmea::time_base> get_position_time() const;
+
+    static quadrant resolve_quadrant(std::uint8_t quadrant);
 	decltype(ack_) get_ack() const { return ack_; }
 	decltype(extension_) get_extension() const { return extension_; }
 };
